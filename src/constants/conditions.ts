@@ -1,0 +1,16 @@
+export const conditions = [
+  'blinded',
+  'deafened',
+  'frightened',
+  'grappled',
+  'incapacitated',
+  'invisible',
+  'paralised',
+  'petrified',
+  'poisoned',
+  'prone',
+  'restrained',
+  'stunned',
+  'unconscious',
+  'exhausted',
+];

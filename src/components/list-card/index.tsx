@@ -1,34 +1,22 @@
 import React from 'react';
 import { Box, Card, CardContent, Typography } from '@mui/material';
 import { DeadButton } from '../buttons/dead-button';
+import { conditions } from '../../constants/conditions';
+import { useAppSelector } from '../../store';
 
 interface IListCardProps {
   name: string;
   initiative: number;
   hp?: number;
+  onClick: () => void;
 }
 
 export const ListCard: React.FC<IListCardProps> = ({
   name,
   initiative,
   hp,
+  onClick,
 }) => {
-  const conditions = [
-    'blinded',
-    'deafened',
-    'frightened',
-    'grappled',
-    'incapacitated',
-    'invisible',
-    'paralised',
-    'petrified',
-    'poisoned',
-    'prone',
-    'restrained',
-    'stunned',
-    'unconscious',
-    'exhausted',
-  ];
   return (
     <Card sx={{ width: '50%', mb: 2, ml: 10, mt: 5 }}>
       <CardContent>
@@ -51,13 +39,12 @@ export const ListCard: React.FC<IListCardProps> = ({
             Initiative {initiative}
           </Typography>
         </Box>
-        <DeadButton onClick={() => {console.log('unlucky, son')}}/>
+        <DeadButton onClick={onClick} />
 
-        <Typography>{hp}</Typography>
         <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
           {conditions.map((condition) => {
             return (
-              <Typography sx={{ fontSize: 10, margin: 1 }} >
+              <Typography sx={{ fontSize: 10, margin: 1 }}>
                 {condition}
               </Typography>
             );

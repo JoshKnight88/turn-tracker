@@ -1,12 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { PlayerCharSlice } from './features/playerCharSlice';
-import { MonsterSlice } from './features/monstersSlice';
+import { CharacterSlice } from './features/characters-slice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 export const store = configureStore({
   reducer: {
-    playerChar: PlayerCharSlice.reducer,
-    monsters: MonsterSlice.reducer,
+    character: CharacterSlice.reducer,
   },
 });
 
