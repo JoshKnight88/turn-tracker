@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { CharacterSlice } from './features/characters-slice';
+import { GraveyardSlice } from './features/graveyard-slice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 export const store = configureStore({
   reducer: {
     character: CharacterSlice.reducer,
+    graveyard: GraveyardSlice.reducer,
   },
 });
 

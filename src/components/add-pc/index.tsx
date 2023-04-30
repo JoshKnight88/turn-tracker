@@ -10,13 +10,14 @@ export const AddPC: React.FC = () => {
   const initiativeRef = useRef('');
 
   const addCharacterHandler = () => {
+    const makeId = Math.floor(Math.random() * 1000);
     dispatch(
       addCharacter({
         name: nameRef.current,
         initiative: parseInt(initiativeRef.current),
+        id: makeId,
       })
     );
-    console.log(dispatch)
   };
 
   return (

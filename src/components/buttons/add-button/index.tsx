@@ -6,7 +6,7 @@ interface IAddButtonProps {
 }
 export const AddButton: React.FC<IAddButtonProps> = ({onClick}) => {
   return (
-    <Button variant='contained' onClick={onClick} sx={{}}>
+    <Button variant='contained' type='submit' onClick={onClick} sx={{}}>
       Add
     </Button>
   );

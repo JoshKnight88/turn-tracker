@@ -11,11 +11,13 @@ export const AddMonster: React.FC = () => {
   const hpRef = useRef('');
 
   const addCharacterHandler = () => {
+    const makeId = Math.floor(Math.random() * 1000);
     dispatch(
       addCharacter({
         name: nameRef.current,
         initiative: parseInt(initiativeRef.current),
         hp: parseInt(hpRef.current),
+        id: makeId,
       })
     );
   };
@@ -34,7 +36,7 @@ export const AddMonster: React.FC = () => {
         />
       </FormControl>
 
-      <FormControl sx={{ mt: 3, mb: 3, width: '40%' }}>
+      <FormControl sx={{ mt: 3, mb: 3, ml: 1, width: '40%' }}>
         <TextField
           id='initiative'
           label='initiative'
@@ -44,11 +46,12 @@ export const AddMonster: React.FC = () => {
           onChange={(e) => (initiativeRef.current = e.currentTarget.value)}
         />
       </FormControl>
-      <FormControl sx={{ mt: 3, mb: 3, width: '80%' }}>
+      <FormControl sx={{ mt: 3, mb: 3, ml: 5, width: '40%' }}>
         <TextField
-          id='monster_name'
+          id='hp'
           label='hp'
           inputRef={hpRef}
+          type='number'
           onChange={(e) => (hpRef.current = e.target.value)}
           fullWidth
         />

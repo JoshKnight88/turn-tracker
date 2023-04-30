@@ -1,6 +1,13 @@
-import React from 'react';
-import { Box, Card, CardContent, Typography } from '@mui/material';
-import { DeadButton } from '../buttons/dead-button';
+import React, { useState } from 'react';
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  TextField,
+  Typography,
+} from '@mui/material';
+// import { DeadButton } from '../buttons/dead-button';
 import { conditions } from '../../constants/conditions';
 import { useAppSelector } from '../../store';
 
@@ -17,6 +24,16 @@ export const ListCard: React.FC<IListCardProps> = ({
   hp,
   onClick,
 }) => {
+  const [isConditionActive, setIsConditionActive] = useState(false);
+
+  const toggleConditionActive = (idx: number) => {
+    console.log(idx);
+
+    const matchConditionIndex = conditions.find((condition, i) => i === idx);
+    console.log(matchConditionIndex);
+
+  };
+  const conditionBgColour = isConditionActive ? 'green' : 'none';
   return (
     <Card sx={{ width: '50%', mb: 2, ml: 10, mt: 5 }}>
       <CardContent>
@@ -38,15 +55,44 @@ export const ListCard: React.FC<IListCardProps> = ({
           >
             Initiative {initiative}
           </Typography>
+          {hp && (
+            <TextField
+              id='hp'
+              label='hp'
+              defaultValue={hp}
+              type='number'
+              sx={{width: '20%' }}
+            />
+          )}
         </Box>
-        <DeadButton onClick={onClick} />
+        <Button
+          variant='contained'
+          onClick={() => onClick()}
+          sx={{
+            borderRadius: '50%',
+            backgroundColor: '#E82B25',
+            width: 50,
+            height: 50,
+            mt: 1,
+            mb: 5,
+          }}
+        >
+          Dead
+        </Button>
 
         <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-          {conditions.map((condition) => {
+          {conditions.map((condition, idx) => {
             return (
-              <Typography sx={{ fontSize: 10, margin: 1 }}>
+              <Button
+                sx={{
+                  fontSize: 10,
+                  margin: 1,
+                  backgroundColor: conditionBgColour,
+                }}
+                onClick={() => toggleConditionActive}
+              >
                 {condition}
-              </Typography>
+              </Button>
             );
           })}
         </Box>

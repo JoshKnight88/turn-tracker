@@ -12,10 +12,10 @@ export const TurnTracker: React.FC = () => {
         <AddPC />
         <AddMonster />
       </Stack>
-      <Stack>
+      <Stack sx={{ width: '50%', display: 'flex', m: 0, textAlign: 'center' }}>
         <TurnOrderList />
       </Stack>
-      <Stack sx={{ width: '25%', display: 'flex', m: 0 }}>
+      <Stack sx={{ width: '15%', display: 'flex', m: 0, textAlign: 'center' }}>
         <Graveyard />
       </Stack>
     </Box>
