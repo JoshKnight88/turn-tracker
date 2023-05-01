@@ -16,12 +16,13 @@ export const AddPC: React.FC = () => {
         name: nameRef.current,
         initiative: parseInt(initiativeRef.current),
         id: makeId,
+        isActive: false
       })
     );
   };
 
   return (
-    <Paper sx={{ width: '100%', mt: 5, ml: 1, p: 2 }}>
+    <Paper sx={{ mt: 0, ml: 1, p: 2 }}>
       <Typography>Add PCs</Typography>
 
       <FormControl sx={{ mt: 3, mb: 3, width: '80%' }}>
@@ -34,7 +35,7 @@ export const AddPC: React.FC = () => {
         />
       </FormControl>
 
-      <FormControl sx={{ mt: 3, mb: 3, width: '40%' }}>
+      <FormControl sx={{ mt: 3, mb: 3, width: '40%', display: 'flex' }}>
         <TextField
           id='initiative'
           label='initiative'

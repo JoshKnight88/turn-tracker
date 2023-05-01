@@ -18,15 +18,16 @@ export const AddMonster: React.FC = () => {
         initiative: parseInt(initiativeRef.current),
         hp: parseInt(hpRef.current),
         id: makeId,
+        isActive: false,
       })
     );
   };
 
   return (
-    <Paper sx={{ width: '100%', mt: 5, ml: 1, p: 2 }}>
+    <Paper sx={{ mt: 5, ml: 1, p: 2 }}>
       <Typography>Add Monsters/NPCs</Typography>
 
-      <FormControl sx={{ mt: 3, mb: 3, width: '80%' }}>
+      <FormControl sx={{ mt: 3, mb: 1, width: '80%' }}>
         <TextField
           id='monster_name'
           label='monster/NPC name'

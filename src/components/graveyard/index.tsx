@@ -11,9 +11,9 @@ export const Graveyard: React.FC = () => {
   const chars = useAppSelector((state) => state.graveyard.graveyard);
   const deadChars = [...chars];
   return (
-    <Stack>
+    <Stack sx={{textAlign: 'center', backgroundColor: '#c2c6cc', borderRadius: 10, width: '60%', mr:0 }}>
       <Typography variant={'h6'}>Graveyard</Typography>
-      <Box>
+      <Box >
         {deadChars.map((char, idx) => {
           return (
             <Paper sx={{m:2}}>
@@ -27,6 +27,7 @@ export const Graveyard: React.FC = () => {
                       initiative: char.initiative,
                       hp: char.hp,
                       id: char.id,
+                      isActive: char.isActive
                     })
                   );
                 }}

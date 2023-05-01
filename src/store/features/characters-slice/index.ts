@@ -4,6 +4,7 @@ export interface ICharacterProps {
   initiative: number;
   hp?: number;
   id: number;
+  isActive: boolean;
 }
 
 interface CharacterState {
@@ -25,6 +26,7 @@ export const CharacterSlice = createSlice({
         initiative: number;
         hp?: number;
         id: number;
+        isActive: boolean;
       }>
     ) => {
       state.characters.push({
@@ -32,18 +34,22 @@ export const CharacterSlice = createSlice({
         initiative: action.payload.initiative,
         hp: action.payload.hp,
         id: action.payload.id,
+        isActive: action.payload.isActive,
       });
     },
     removeCharacter: (state, action: PayloadAction<{ id: number }>) => {
-    
       const remainingChars = state.characters.filter(
         (char) => char.id !== action.payload.id
       );
       state.characters = remainingChars;
+    },
+    removeAllCharacters: (state) => {
+      state.characters = [];
     },
   },
 });
 
 export default CharacterSlice.reducer;
 
-export const { addCharacter, removeCharacter } = CharacterSlice.actions;
+export const { addCharacter, removeCharacter, removeAllCharacters } =
+  CharacterSlice.actions;

@@ -4,6 +4,7 @@ export interface IGraveyardProps {
   initiative: number;
   hp?: number;
   id: number;
+  isActive: boolean;
 }
 
 interface GraveyardState {
@@ -25,6 +26,7 @@ export const GraveyardSlice = createSlice({
         initiative: number;
         hp?: number;
         id: number;
+        isActive: boolean;
       }>
     ) => {
       state.graveyard.push({
@@ -32,6 +34,7 @@ export const GraveyardSlice = createSlice({
         initiative: action.payload.initiative,
         hp: action.payload.hp,
         id: action.payload.id,
+        isActive: action.payload.isActive,
       });
     },
     removeFromGraveyard: (state, action: PayloadAction<{ id: number }>) => {
@@ -40,9 +43,13 @@ export const GraveyardSlice = createSlice({
       );
       state.graveyard = remainingChars;
     },
+    deleteGraveyard: (state) => {
+      state.graveyard = []
+    }
   },
 });
 
 export default GraveyardSlice.reducer;
 
-export const { addToGraveyard, removeFromGraveyard } = GraveyardSlice.actions;
+export const { addToGraveyard, removeFromGraveyard, deleteGraveyard } =
+  GraveyardSlice.actions;

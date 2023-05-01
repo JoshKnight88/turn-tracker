@@ -10,32 +10,27 @@ import {
 // import { DeadButton } from '../buttons/dead-button';
 import { conditions } from '../../constants/conditions';
 import { useAppSelector } from '../../store';
+import { ConditionsSelect } from '../conditions-select';
 
 interface IListCardProps {
   name: string;
   initiative: number;
   hp?: number;
   onClick: () => void;
+  
 }
+
+
 
 export const ListCard: React.FC<IListCardProps> = ({
   name,
   initiative,
   hp,
   onClick,
+  
 }) => {
-  const [isConditionActive, setIsConditionActive] = useState(false);
-
-  const toggleConditionActive = (idx: number) => {
-    console.log(idx);
-
-    const matchConditionIndex = conditions.find((condition, i) => i === idx);
-    console.log(matchConditionIndex);
-
-  };
-  const conditionBgColour = isConditionActive ? 'green' : 'none';
   return (
-    <Card sx={{ width: '50%', mb: 2, ml: 10, mt: 5 }}>
+    <Card sx={{ width: '80%', mb: 2, ml: 10, mt: 5 }}>
       <CardContent>
         <Box
           sx={{
@@ -61,7 +56,7 @@ export const ListCard: React.FC<IListCardProps> = ({
               label='hp'
               defaultValue={hp}
               type='number'
-              sx={{width: '20%' }}
+              sx={{ width: '20%' }}
             />
           )}
         </Box>
@@ -79,23 +74,8 @@ export const ListCard: React.FC<IListCardProps> = ({
         >
           Dead
         </Button>
-
-        <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-          {conditions.map((condition, idx) => {
-            return (
-              <Button
-                sx={{
-                  fontSize: 10,
-                  margin: 1,
-                  backgroundColor: conditionBgColour,
-                }}
-                onClick={() => toggleConditionActive}
-              >
-                {condition}
-              </Button>
-            );
-          })}
-        </Box>
+       
+        <ConditionsSelect/>
       </CardContent>
     </Card>
   );
