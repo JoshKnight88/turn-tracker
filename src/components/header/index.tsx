@@ -3,7 +3,7 @@ import React from 'react'
 
 export const Header: React.FC = () => {
     return (
-      <Stack>
+      <Stack sx={{textAlign: 'center'}}>
         <Typography variant={'h4'}>D&D Initiative Tracker</Typography>
         <Typography>Managed with Redux Toolkit</Typography>
       </Stack>

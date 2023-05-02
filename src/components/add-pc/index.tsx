@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { FormControl, Paper, TextField, Typography } from '@mui/material';
 import { AddButton } from '../buttons/add-button';
 import { useAppDispatch } from '../../store';
@@ -6,19 +6,22 @@ import { addCharacter } from '../../store/features/characters-slice';
 
 export const AddPC: React.FC = () => {
   const dispatch = useAppDispatch();
-  const nameRef = useRef('');
-  const initiativeRef = useRef('');
+
+  const [nameField, setNameField] = useState('');
+  const [initField, setInitField] = useState('');
 
   const addCharacterHandler = () => {
     const makeId = Math.floor(Math.random() * 1000);
     dispatch(
       addCharacter({
-        name: nameRef.current,
-        initiative: parseInt(initiativeRef.current),
+        name: nameField,
+        initiative: parseInt(initField),
         id: makeId,
-        isActive: false
+        isActive: false,
       })
     );
+    setNameField('');
+    setInitField('');
   };
 
   return (
@@ -29,8 +32,8 @@ export const AddPC: React.FC = () => {
         <TextField
           id='PC_name'
           label='PC name'
-          inputRef={nameRef}
-          onChange={(e) => (nameRef.current = e.target.value)}
+          value={nameField}
+          onChange={(e) => setNameField(e.target.value)}
           fullWidth
         />
       </FormControl>
@@ -39,10 +42,10 @@ export const AddPC: React.FC = () => {
         <TextField
           id='initiative'
           label='initiative'
-          inputRef={initiativeRef}
+          value={initField}
           fullWidth
           type='number'
-          onChange={(e) => (initiativeRef.current = e.currentTarget.value)}
+          onChange={(e) => setInitField(e.target.value)}
         />
       </FormControl>
 

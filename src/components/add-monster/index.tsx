@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { FormControl, Paper, TextField, Typography } from '@mui/material';
 import { AddButton } from '../buttons/add-button';
 import { useAppDispatch } from '../../store';
@@ -6,21 +6,25 @@ import { addCharacter } from '../../store/features/characters-slice';
 
 export const AddMonster: React.FC = () => {
   const dispatch = useAppDispatch();
-  const nameRef = useRef('');
-  const initiativeRef = useRef('');
-  const hpRef = useRef('');
+
+  const [nameField, setNameField] = useState('');
+  const [initField, setInitField] = useState('');
+  const [hpField, setHpField] = useState('');
 
   const addCharacterHandler = () => {
     const makeId = Math.floor(Math.random() * 1000);
     dispatch(
       addCharacter({
-        name: nameRef.current,
-        initiative: parseInt(initiativeRef.current),
-        hp: parseInt(hpRef.current),
+        name: nameField,
+        initiative: parseInt(initField),
+        hp: parseInt(hpField),
         id: makeId,
         isActive: false,
       })
     );
+    setNameField('');
+    setInitField('');
+    setHpField('');
   };
 
   return (
@@ -31,8 +35,8 @@ export const AddMonster: React.FC = () => {
         <TextField
           id='monster_name'
           label='monster/NPC name'
-          inputRef={nameRef}
-          onChange={(e) => (nameRef.current = e.target.value)}
+          value={nameField}
+          onChange={(e) => setNameField(e.target.value)}
           fullWidth
         />
       </FormControl>
@@ -41,19 +45,19 @@ export const AddMonster: React.FC = () => {
         <TextField
           id='initiative'
           label='initiative'
-          inputRef={initiativeRef}
+          value={initField}
           fullWidth
           type='number'
-          onChange={(e) => (initiativeRef.current = e.currentTarget.value)}
+          onChange={(e) => setInitField(e.target.value)}
         />
       </FormControl>
       <FormControl sx={{ mt: 3, mb: 3, ml: 5, width: '40%' }}>
         <TextField
           id='hp'
           label='hp'
-          inputRef={hpRef}
+          value={hpField}
           type='number'
-          onChange={(e) => (hpRef.current = e.target.value)}
+          onChange={(e) => setHpField(e.target.value)}
           fullWidth
         />
       </FormControl>

@@ -1,7 +1,14 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, styled } from '@mui/material';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { increment, reset } from '../../store/features/counter-slice';
+
+// const CounterButton = styled(Button)({
+//   '&:hover': {
+//     backgroundColor: 'none',
+//     boxShadow: 'none',
+//   },
+// });
 
 export const TurnCounter: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -15,15 +22,25 @@ export const TurnCounter: React.FC = () => {
     dispatch(reset());
   };
   return (
-    <Box sx={{display: 'flex', flexDirection: 'column'}}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignSelf: 'center',
+        textAlign: 'center',
+      }}
+    >
       <Typography>Turn</Typography>
       <Button
+        disableRipple
         onClick={incrementTurn}
         sx={{ fontSize: 40, height: 'auto', decoration: 'none' }}
       >
         {turnNumber}
       </Button>
-      <Button sx={{fontSize: 10}} onClick={resetCounter}>reset</Button>
+      <Button disableRipple sx={{ fontSize: 10 }} onClick={resetCounter}>
+        reset
+      </Button>
     </Box>
   );
 };
