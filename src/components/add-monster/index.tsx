@@ -38,6 +38,7 @@ export const AddMonster: React.FC = () => {
           value={nameField}
           onChange={(e) => setNameField(e.target.value)}
           fullWidth
+          required
         />
       </FormControl>
 
@@ -49,6 +50,7 @@ export const AddMonster: React.FC = () => {
           fullWidth
           type='number'
           onChange={(e) => setInitField(e.target.value)}
+          required
         />
       </FormControl>
       <FormControl sx={{ mt: 3, mb: 3, ml: 5, width: '40%' }}>
@@ -59,6 +61,7 @@ export const AddMonster: React.FC = () => {
           type='number'
           onChange={(e) => setHpField(e.target.value)}
           fullWidth
+          required
         />
       </FormControl>
 

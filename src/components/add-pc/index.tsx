@@ -35,6 +35,7 @@ export const AddPC: React.FC = () => {
           value={nameField}
           onChange={(e) => setNameField(e.target.value)}
           fullWidth
+          required
         />
       </FormControl>
 
@@ -46,6 +47,7 @@ export const AddPC: React.FC = () => {
           fullWidth
           type='number'
           onChange={(e) => setInitField(e.target.value)}
+          required
         />
       </FormControl>
 
