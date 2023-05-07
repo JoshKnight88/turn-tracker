@@ -14,7 +14,7 @@ export const TurnTracker: React.FC = () => {
   const isMobile = useIsMobile();
   return !isMobile ? (
     <Box sx={{ display: 'flex' }}>
-      <Stack sx={{ width: '25%', mt: 5 }}>
+      <Stack sx={{ width: '30%', mt: 5 }}>
         <AddPC />
         <AddMonster />
       </Stack>

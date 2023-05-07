@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { FormControl, Paper, TextField, Typography } from '@mui/material';
+import { Box, FormControl, Paper, TextField, Typography } from '@mui/material';
 import { AddButton } from '../buttons/add-button';
 import { useAppDispatch } from '../../store';
 import { addCharacter } from '../../store/features/characters-slice';
@@ -69,29 +69,30 @@ export const AddMonster: React.FC = () => {
           required
         />
       </FormControl>
-
-      <FormControl sx={{ mt: 3, mb: 3, ml: 1, width: '40%' }}>
-        <TextField
-          id='initiative'
-          label='initiative'
-          value={initField}
-          fullWidth
-          type='number'
-          onChange={(e) => setInitField(e.target.value)}
-          required
-        />
-      </FormControl>
-      <FormControl sx={{ mt: 3, mb: 3, ml: 5, width: '40%' }}>
-        <TextField
-          id='hp'
-          label='hp'
-          value={hpField}
-          type='number'
-          onChange={(e) => setHpField(e.target.value)}
-          fullWidth
-          required
-        />
-      </FormControl>
+      <Box>
+        <FormControl sx={{ mt: 3, mb: 3, ml: 1, width: '40%' }}>
+          <TextField
+            id='initiative'
+            label='initiative'
+            value={initField}
+            fullWidth
+            type='number'
+            onChange={(e) => setInitField(e.target.value)}
+            required
+          />
+        </FormControl>
+        <FormControl sx={{ mt: 3, mb: 3, ml: 5, width: '40%' }}>
+          <TextField
+            id='hp'
+            label='hp'
+            value={hpField}
+            type='number'
+            onChange={(e) => setHpField(e.target.value)}
+            fullWidth
+            required
+          />
+        </FormControl>
+      </Box>
 
       <AddButton onClick={addCharacterHandler} isActiveState={formIsValid} />
     </Paper>
