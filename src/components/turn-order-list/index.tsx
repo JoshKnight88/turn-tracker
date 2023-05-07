@@ -35,6 +35,7 @@ export const TurnOrderList: React.FC = () => {
       {sortedChars.map((char, idx) => {
         return (
           <ListCard
+            id= {char.id}
             name={char.name}
             initiative={char.initiative}
             hp={char.hp}

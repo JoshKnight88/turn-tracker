@@ -5,6 +5,7 @@ export interface ICharacterProps {
   hp?: number;
   id: number;
   isActive: boolean;
+  activeConditions: Array<{ name: string; id: number }>;
 }
 
 interface CharacterState {
@@ -27,6 +28,7 @@ export const CharacterSlice = createSlice({
         hp?: number;
         id: number;
         isActive: boolean;
+        activeConditions: Array<{ name: string; id: number }>;
       }>
     ) => {
       state.characters.push({
@@ -35,6 +37,7 @@ export const CharacterSlice = createSlice({
         hp: action.payload.hp,
         id: action.payload.id,
         isActive: action.payload.isActive,
+        activeConditions: action.payload.activeConditions,
       });
     },
     removeCharacter: (state, action: PayloadAction<{ id: number }>) => {
@@ -46,10 +49,47 @@ export const CharacterSlice = createSlice({
     removeAllCharacters: (state) => {
       state.characters = [];
     },
+    addCondition: (
+      state,
+      action: PayloadAction<{
+        conditionName: string;
+        conditionId: number;
+        id: number;
+      }>
+    ) => {
+      const foundChar = state.characters.find(
+        ({ id }) => id === action.payload.id
+      );
+
+      foundChar?.activeConditions.push({
+        name: action.payload.conditionName,
+        id: action.payload.conditionId,
+      });
+    },
+    removeCondition: (
+      state,
+      action: PayloadAction<{ id: number; condId: number }>
+    ) => {
+      const char = state.characters.find(({ id }) => id === action.payload.id);
+      const remainingConditions = char?.activeConditions.filter(
+        (cond) => cond.id !== action.payload.condId
+      );
+      if (char !== undefined) {
+        char.activeConditions = remainingConditions as Array<{
+          name: string;
+          id: number;
+        }>;
+      }
+    },
   },
 });
 
 export default CharacterSlice.reducer;
 
-export const { addCharacter, removeCharacter, removeAllCharacters } =
-  CharacterSlice.actions;
+export const {
+  addCharacter,
+  removeCharacter,
+  removeAllCharacters,
+  addCondition,
+  removeCondition,
+} = CharacterSlice.actions;

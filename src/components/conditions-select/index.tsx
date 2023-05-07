@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { conditions } from '../../constants/conditions';
 import {
   Box,
@@ -12,21 +12,16 @@ import {
 import {
   addCondition,
   removeCondition,
-} from '../../store/features/conditions-slice';
+} from '../../store/features/characters-slice';
 import { useAppDispatch, useAppSelector } from '../../store';
 
-export const ConditionsSelect = () => {
+export const ConditionsSelect = (characterId: { characterId: number }) => {
   const [inputValue, setInputValue] = useState('');
 
+  const ref = useRef<HTMLSelectElement>();
   const dispatch = useAppDispatch();
 
-  const makeId = Math.floor(Math.random() * 1000);
-
-  const selectedConditions = useAppSelector(
-    (state) => state.condition.conditions
-  );
-
-  console.log(selectedConditions);
+  const chars = useAppSelector((state) => state.character.characters);
 
   const mapAllConditions = conditions.map((condition, idx) => {
     return (
@@ -36,35 +31,50 @@ export const ConditionsSelect = () => {
     );
   });
 
-  const mapSelectedConditions = selectedConditions.map(
-    (selectedCondition, idx) => {
+  const findCharacter = chars.find(
+    (char) => char.id === characterId.characterId
+  );
+
+  const mapSelectedConditions = findCharacter?.activeConditions.map(
+    (cond, idx) => {
       return (
         <Typography
           sx={{ cursor: 'pointer' }}
           onClick={() =>
-            dispatch(removeCondition({ id: selectedCondition.id }))
+            dispatch(
+              removeCondition({ id: characterId.characterId, condId: cond.id })
+            )
           }
           key={idx}
         >
-          {selectedCondition.name}
+          {cond.name}
         </Typography>
       );
     }
   );
 
   const changeHandler = (event: SelectChangeEvent) => {
-    dispatch(addCondition({ name: event.target.value, id: makeId }));
-    setInputValue('Condition');
+    const filteredCond = conditions.filter(
+      (cond) => cond.name === event.target.value
+    );
+    dispatch(
+      addCondition({
+        conditionName: filteredCond[0].name,
+        conditionId: filteredCond[0].id,
+        id: characterId.characterId,
+      })
+    );
   };
 
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Box sx={{ minWidth: 120 }} ref={ref}>
       <FormControl fullWidth>
         <InputLabel id='condition'>Condition</InputLabel>
         <Select
           labelId='condition'
           id='condition-select'
           value={inputValue}
+          defaultValue={''}
           label='Condition'
           onChange={changeHandler}
         >

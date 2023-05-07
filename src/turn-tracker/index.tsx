@@ -7,44 +7,11 @@ import { Graveyard } from '../components/graveyard';
 import { TurnCounter } from '../components/turn-counter';
 import { ClearAllButton } from '../components/buttons/clear-all-button';
 import { Header } from '../components/header';
+import { useIsMobile } from '../hooks/use-is-mobile';
 
 export const TurnTracker: React.FC = () => {
-  return (
-    // <Box
-    //   sx={{
-    //     height: '100vh',
-    //     display: 'grid',
-    //     gridTemplateRows: 'repeat(5, 20%)',
-    //     gridTemplateColumns: '25% 50% 25%',
-    //     gridTemplateAreas: `'title . counter'
-    //      'pc track counter'
-    //      'pc track grave'
-    //      'mon track grave'
-    //      'mon track clear'`,
-    //   }}
-    // >
-    //   <Box sx={{gridArea: 'title'}}>
-    //   <Header/>
-    //   </Box>
-    //   <Box sx={{ gridArea: 'pc', alignContent: 'start' }}>
-    //     <AddPC />
-    //   </Box>
-    //   <Box sx={{ gridArea: 'mon' }}>
-    //     <AddMonster />
-    //   </Box>
-    //   <Box sx={{ gridArea: 'track', textAlign: 'center' }}>
-    //     <TurnOrderList />
-    //   </Box>
-    //   <Box sx={{ gridArea: 'counter', textAlign: 'center', alignItems: 'center' }}>
-    //     <TurnCounter />
-    //   </Box>
-    //   <Box sx={{ gridArea: 'grave', justifyItems: 'center' }}>
-    //     <Graveyard />
-    //   </Box>
-    //   <Box sx={{ gridArea: 'clear', justifyItems: 'end' }}>
-    //     <ClearAllButton />
-    //   </Box>
-    // </Box>
+  const isMobile = useIsMobile();
+  return !isMobile ? (
     <Box sx={{ display: 'flex' }}>
       <Stack sx={{ width: '25%', mt: 5 }}>
         <AddPC />
@@ -60,5 +27,18 @@ export const TurnTracker: React.FC = () => {
         <ClearAllButton />
       </Stack>
     </Box>
+  ) : (
+    <Stack>
+      <Header />
+      <Box sx={{ mb: 5, mt: 5 }}>
+        <AddPC />
+        <AddMonster />
+      </Box>
+
+      <TurnCounter />
+      <TurnOrderList />
+      <Graveyard />
+      <ClearAllButton />
+    </Stack>
   );
 };

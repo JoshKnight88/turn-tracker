@@ -8,11 +8,10 @@ import {
   Typography,
 } from '@mui/material';
 // import { DeadButton } from '../buttons/dead-button';
-import { conditions } from '../../constants/conditions';
-import { useAppSelector } from '../../store';
 import { ConditionsSelect } from '../conditions-select';
 
 interface IListCardProps {
+  id: number
   name: string;
   initiative: number;
   hp?: number;
@@ -23,6 +22,7 @@ interface IListCardProps {
 
 
 export const ListCard: React.FC<IListCardProps> = ({
+  id,
   name,
   initiative,
   hp,
@@ -30,7 +30,7 @@ export const ListCard: React.FC<IListCardProps> = ({
   
 }) => {
   return (
-    <Card sx={{ width: '80%', mb: 2, ml: 10, mt: 5 }}>
+    <Card sx={{ width: '80%', mb: 2, mt: 5, ml: 'auto', mr: 'auto' }}>
       <CardContent>
         <Box
           sx={{
@@ -42,14 +42,6 @@ export const ListCard: React.FC<IListCardProps> = ({
           <Typography sx={{ ml: 2, mb: 5, fontWeight: 'bold', fontSize: 20 }}>
             {name}
           </Typography>
-          <Typography
-            sx={{
-              mr: 2,
-              mb: 5,
-            }}
-          >
-            Initiative {initiative}
-          </Typography>
           {hp && (
             <TextField
               id='hp'
@@ -59,23 +51,33 @@ export const ListCard: React.FC<IListCardProps> = ({
               sx={{ width: '20%' }}
             />
           )}
+          <Typography
+            sx={{
+              mr: 2,
+              mb: 5,
+            }}
+          >
+            Initiative {initiative}
+          </Typography>
         </Box>
-        <Button
-          variant='contained'
-          onClick={() => onClick()}
-          sx={{
-            borderRadius: '50%',
-            backgroundColor: '#E82B25',
-            width: 50,
-            height: 50,
-            mt: 1,
-            mb: 5,
-          }}
-        >
-          Dead
-        </Button>
-       
-        <ConditionsSelect/>
+        <Box sx={{display: 'flex', justifyContent: 'center'}}>
+          <Button
+            variant='contained'
+            onClick={() => onClick()}
+            sx={{
+              borderRadius: '50%',
+              backgroundColor: '#E82B25',
+              width: 50,
+              height: 50,
+              mt: 1,
+              mb: 5,
+            }}
+          >
+            Dead
+          </Button>
+        </Box>
+
+        <ConditionsSelect characterId={id} />
       </CardContent>
     </Card>
   );

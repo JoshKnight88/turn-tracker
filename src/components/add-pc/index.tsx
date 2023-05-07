@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FormControl, Paper, TextField, Typography } from '@mui/material';
 import { AddButton } from '../buttons/add-button';
 import { useAppDispatch } from '../../store';
@@ -9,6 +9,8 @@ export const AddPC: React.FC = () => {
 
   const [nameField, setNameField] = useState('');
   const [initField, setInitField] = useState('');
+  const [nameIsValid, setNameIsValid] = useState(false);
+  const [initIsValid, setInitIsValid] = useState(false);
 
   const addCharacterHandler = () => {
     const makeId = Math.floor(Math.random() * 1000);
@@ -18,11 +20,27 @@ export const AddPC: React.FC = () => {
         initiative: parseInt(initField),
         id: makeId,
         isActive: false,
+        activeConditions: [],
       })
     );
     setNameField('');
     setInitField('');
+    setNameIsValid(false);
+    setInitIsValid(false);
   };
+  useEffect(() => {
+    if (nameField !== '') {
+      setNameIsValid(true);
+    }
+  }, [nameField]);
+
+  useEffect(() => {
+    if (initField !== '') {
+      setInitIsValid(true);
+    }
+  }, [initField]);
+
+  const formIsValid = nameIsValid && initIsValid;
 
   return (
     <Paper sx={{ mt: 0, ml: 1, p: 2 }}>
@@ -33,7 +51,9 @@ export const AddPC: React.FC = () => {
           id='PC_name'
           label='PC name'
           value={nameField}
-          onChange={(e) => setNameField(e.target.value)}
+          onChange={(e) => {
+            setNameField(e.target.value);
+          }}
           fullWidth
           required
         />
@@ -46,12 +66,14 @@ export const AddPC: React.FC = () => {
           value={initField}
           fullWidth
           type='number'
-          onChange={(e) => setInitField(e.target.value)}
+          onChange={(e) => {
+            setInitField(e.target.value);
+          }}
           required
         />
       </FormControl>
 
-      <AddButton onClick={addCharacterHandler} />
+      <AddButton onClick={addCharacterHandler} isActiveState={formIsValid} />
     </Paper>
   );
 };

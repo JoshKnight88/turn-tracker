@@ -41,6 +41,7 @@ export const Graveyard: React.FC = () => {
                       hp: char.hp,
                       id: char.id,
                       isActive: char.isActive,
+                      activeConditions: [],
                     })
                   );
                 }}

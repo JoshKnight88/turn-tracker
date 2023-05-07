@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FormControl, Paper, TextField, Typography } from '@mui/material';
 import { AddButton } from '../buttons/add-button';
 import { useAppDispatch } from '../../store';
@@ -10,7 +10,9 @@ export const AddMonster: React.FC = () => {
   const [nameField, setNameField] = useState('');
   const [initField, setInitField] = useState('');
   const [hpField, setHpField] = useState('');
-
+  const [nameIsValid, setNameIsValid] = useState(false);
+  const [initIsValid, setInitIsValid] = useState(false);
+  const [hpIsValid, setHpIsValid] = useState(false);
   const addCharacterHandler = () => {
     const makeId = Math.floor(Math.random() * 1000);
     dispatch(
@@ -20,12 +22,36 @@ export const AddMonster: React.FC = () => {
         hp: parseInt(hpField),
         id: makeId,
         isActive: false,
+        activeConditions: [],
       })
     );
     setNameField('');
     setInitField('');
     setHpField('');
+    setNameIsValid(false);
+    setInitIsValid(false);
+    setHpIsValid(false);
   };
+
+  useEffect(() => {
+    if (nameField !== '') {
+      setNameIsValid(true);
+    }
+  }, [nameField]);
+
+  useEffect(() => {
+    if (initField !== '') {
+      setInitIsValid(true);
+    }
+  }, [initField]);
+
+  useEffect(() => {
+    if (hpField !== '') {
+      setHpIsValid(true);
+    }
+  }, [hpField]);
+
+  const formIsValid = nameIsValid && initIsValid && hpIsValid;
 
   return (
     <Paper sx={{ mt: 5, ml: 1, p: 2 }}>
@@ -65,7 +91,7 @@ export const AddMonster: React.FC = () => {
         />
       </FormControl>
 
-      <AddButton onClick={addCharacterHandler} />
+      <AddButton onClick={addCharacterHandler} isActiveState={formIsValid} />
     </Paper>
   );
 };
