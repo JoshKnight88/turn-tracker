@@ -3,6 +3,7 @@ import { FormControl, Paper, TextField, Typography } from '@mui/material';
 import { AddButton } from '../buttons/add-button';
 import { useAppDispatch } from '../../store';
 import { addCharacter } from '../../store/features/characters-slice';
+import { isOpenTrue } from '../../store/features/snackbar-slice';
 
 export const AddPC: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -23,6 +24,7 @@ export const AddPC: React.FC = () => {
         activeConditions: [],
       })
     );
+    dispatch(isOpenTrue({ isOpen: true, message: 'PC added!' }));
     setNameField('');
     setInitField('');
     setNameIsValid(false);

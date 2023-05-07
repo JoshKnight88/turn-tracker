@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { AddButton } from '../buttons/add-button';
 import { removeFromGraveyard } from '../../store/features/graveyard-slice';
 import { addCharacter } from '../../store/features/characters-slice';
+import { isOpenTrue } from '../../store/features/snackbar-slice';
 
 export const Graveyard: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -42,6 +43,12 @@ export const Graveyard: React.FC = () => {
                       id: char.id,
                       isActive: char.isActive,
                       activeConditions: [],
+                    })
+                  );
+                  dispatch(
+                    isOpenTrue({
+                      isOpen: true,
+                      message: 'Removed from Graveyard!',
                     })
                   );
                 }}

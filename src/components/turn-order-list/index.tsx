@@ -4,6 +4,7 @@ import { Box, Button, Paper, Stack, Typography } from '@mui/material';
 import { ListCard } from '../list-card';
 import { addToGraveyard } from '../../store/features/graveyard-slice';
 import { removeCharacter } from '../../store/features/characters-slice';
+import { isOpenTrue } from '../../store/features/snackbar-slice';
 
 export const TurnOrderList: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -35,7 +36,7 @@ export const TurnOrderList: React.FC = () => {
       {sortedChars.map((char, idx) => {
         return (
           <ListCard
-            id= {char.id}
+            id={char.id}
             name={char.name}
             initiative={char.initiative}
             hp={char.hp}
@@ -50,6 +51,9 @@ export const TurnOrderList: React.FC = () => {
                   id: char.id,
                   isActive: false,
                 })
+              );
+              dispatch(
+                isOpenTrue({ isOpen: true, message: 'Added to Graveyard!' })
               );
             }}
           />

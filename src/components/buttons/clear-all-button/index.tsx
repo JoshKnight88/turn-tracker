@@ -4,6 +4,7 @@ import { removeAllCharacters } from '../../../store/features/characters-slice';
 import { useAppDispatch } from '../../../store';
 import { reset } from '../../../store/features/counter-slice';
 import { deleteGraveyard } from '../../../store/features/graveyard-slice';
+import { isOpenTrue } from '../../../store/features/snackbar-slice';
 
 export const ClearAllButton: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -12,6 +13,7 @@ export const ClearAllButton: React.FC = () => {
     dispatch(reset());
     dispatch(removeAllCharacters());
     dispatch(deleteGraveyard());
+    dispatch(isOpenTrue({ isOpen: true, message: 'Tracker cleared!' }));
   };
   return (
     <Button

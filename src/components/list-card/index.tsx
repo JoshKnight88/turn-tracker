@@ -9,17 +9,15 @@ import {
 } from '@mui/material';
 // import { DeadButton } from '../buttons/dead-button';
 import { ConditionsSelect } from '../conditions-select';
+import { useIsMobile } from '../../hooks/use-is-mobile';
 
 interface IListCardProps {
-  id: number
+  id: number;
   name: string;
   initiative: number;
   hp?: number;
   onClick: () => void;
-  
 }
-
-
 
 export const ListCard: React.FC<IListCardProps> = ({
   id,
@@ -27,8 +25,9 @@ export const ListCard: React.FC<IListCardProps> = ({
   initiative,
   hp,
   onClick,
-  
 }) => {
+
+  const isMobile = useIsMobile()
   return (
     <Card sx={{ width: '80%', mb: 2, mt: 5, ml: 'auto', mr: 'auto' }}>
       <CardContent>
@@ -42,15 +41,7 @@ export const ListCard: React.FC<IListCardProps> = ({
           <Typography sx={{ ml: 2, mb: 5, fontWeight: 'bold', fontSize: 20 }}>
             {name}
           </Typography>
-          {hp && (
-            <TextField
-              id='hp'
-              label='hp'
-              defaultValue={hp}
-              type='number'
-              sx={{ width: '20%' }}
-            />
-          )}
+
           <Typography
             sx={{
               mr: 2,
@@ -60,7 +51,16 @@ export const ListCard: React.FC<IListCardProps> = ({
             Initiative {initiative}
           </Typography>
         </Box>
-        <Box sx={{display: 'flex', justifyContent: 'center'}}>
+        {hp && (
+          <TextField
+            id='hp'
+            label='hp'
+            defaultValue={hp}
+            type='number'
+            sx={{ width: isMobile ? '30%' : '20%' }}
+          />
+        )}
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <Button
             variant='contained'
             onClick={() => onClick()}

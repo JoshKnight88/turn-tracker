@@ -8,6 +8,7 @@ import { TurnCounter } from '../components/turn-counter';
 import { ClearAllButton } from '../components/buttons/clear-all-button';
 import { Header } from '../components/header';
 import { useIsMobile } from '../hooks/use-is-mobile';
+import { TrackerSnackbar } from '../components/snackbar';
 
 export const TurnTracker: React.FC = () => {
   const isMobile = useIsMobile();
@@ -20,6 +21,7 @@ export const TurnTracker: React.FC = () => {
       <Stack alignItems='center' spacing={10} sx={{ width: '50%', mt: 5 }}>
         <Header />
         <TurnOrderList />
+        <TrackerSnackbar />
       </Stack>
       <Stack justifyContent='start' sx={{ width: '25%', mt: 5 }}>
         <TurnCounter />
@@ -34,8 +36,8 @@ export const TurnTracker: React.FC = () => {
         <AddPC />
         <AddMonster />
       </Box>
-
       <TurnCounter />
+      <TrackerSnackbar />
       <TurnOrderList />
       <Graveyard />
       <ClearAllButton />
