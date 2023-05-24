@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { Box, Button, Card, Paper, Stack, Typography } from '@mui/material';
 import { ListCard } from '../list-card';
@@ -32,6 +32,8 @@ export const TurnOrderList: React.FC = () => {
       </Typography>
 
       {sortedChars.map((char, idx) => {
+        let colour = char.hp ? '#b9d2fa' : '#b9fac2';
+
         return (
           <ListCard
             id={char.id}
@@ -39,6 +41,7 @@ export const TurnOrderList: React.FC = () => {
             initiative={char.initiative}
             hp={char.hp}
             key={idx}
+            colour={colour}
             onClick={() => {
               dispatch(removeCharacter({ id: char.id }));
               dispatch(

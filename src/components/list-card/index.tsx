@@ -16,6 +16,7 @@ interface IListCardProps {
   name: string;
   initiative: number;
   hp?: number;
+  colour: string;
   onClick: () => void;
 }
 
@@ -24,21 +25,10 @@ export const ListCard: React.FC<IListCardProps> = ({
   name,
   initiative,
   hp,
+  colour,
   onClick,
 }) => {
   const isMobile = useIsMobile();
-  const [colour, setColour] = useState('');
-
-  useEffect(() => {
-    const colourSelect = () => {
-      if (hp) {
-        setColour('#b9d2fa');
-      } else {
-        setColour('#b9fac2');
-      }
-    };
-    colourSelect();
-  }, []);
 
   return (
     <Card
