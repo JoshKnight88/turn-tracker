@@ -13,7 +13,7 @@ import { TrackerSnackbar } from '../components/snackbar';
 export const TurnTracker: React.FC = () => {
   const isMobile = useIsMobile();
   return !isMobile ? (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', bgcolor: '#eaeaea' }}>
       <Stack sx={{ width: '30%', mt: 5 }}>
         <AddPC />
         <AddMonster />
@@ -30,7 +30,7 @@ export const TurnTracker: React.FC = () => {
       </Stack>
     </Box>
   ) : (
-    <Stack>
+    <Stack sx={{ bgcolor: '#eaeaea' }}>
       <Header />
       <Box sx={{ mb: 5, mt: 5 }}>
         <AddPC />

@@ -20,7 +20,7 @@ export const ClearAllButton: React.FC = () => {
       onClick={clearTracker}
       variant='contained'
       type='submit'
-      sx={{ backgroundColor: '#E82B25' }}
+      sx={{ backgroundColor: '#E82B25', m: 1 }}
     >
       Clear Tracker
     </Button>

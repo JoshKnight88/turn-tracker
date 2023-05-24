@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -26,10 +26,31 @@ export const ListCard: React.FC<IListCardProps> = ({
   hp,
   onClick,
 }) => {
+  const isMobile = useIsMobile();
+  const [colour, setColour] = useState('');
 
-  const isMobile = useIsMobile()
+  useEffect(() => {
+    const colourSelect = () => {
+      if (hp) {
+        setColour('#b9d2fa');
+      } else {
+        setColour('#b9fac2');
+      }
+    };
+    colourSelect();
+  }, []);
+
   return (
-    <Card sx={{ width: '80%', mb: 2, mt: 5, ml: 'auto', mr: 'auto' }}>
+    <Card
+      sx={{
+        width: '80%',
+        mb: 2,
+        mt: 5,
+        ml: 'auto',
+        mr: 'auto',
+        bgcolor: colour,
+      }}
+    >
       <CardContent>
         <Box
           sx={{

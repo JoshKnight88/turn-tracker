@@ -1,4 +1,4 @@
-import { Box, Button, Paper, Stack, Typography } from '@mui/material';
+import { Box, Button, Card, Paper, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { AddButton } from '../buttons/add-button';
@@ -12,15 +12,13 @@ export const Graveyard: React.FC = () => {
   const chars = useAppSelector((state) => state.graveyard.graveyard);
   const deadChars = [...chars];
   return (
-    <Stack
+    <Card
       sx={{
+        m: 1,
         textAlign: 'center',
-        borderColor: '#d1d1d1',
-        borderRadius: 10,
-        mr: 0,
-        border: 3,
-        mt: 10,
-        mb: 20,
+        // mr: 0,
+        // mt: 10,
+        // mb: 20,
         minHeight: 100,
       }}
     >
@@ -59,6 +57,6 @@ export const Graveyard: React.FC = () => {
           );
         })}
       </Box>
-    </Stack>
+    </Card>
   );
 };

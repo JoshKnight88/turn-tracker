@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { Box, Button, Paper, Stack, Typography } from '@mui/material';
+import { Box, Button, Card, Paper, Stack, Typography } from '@mui/material';
 import { ListCard } from '../list-card';
 import { addToGraveyard } from '../../store/features/graveyard-slice';
 import { removeCharacter } from '../../store/features/characters-slice';
@@ -18,10 +18,8 @@ export const TurnOrderList: React.FC = () => {
   });
 
   return (
-    <Stack
+    <Card
       sx={{
-        borderRadius: 10,
-        border: 3,
         ml: 2,
         mt: 10,
         mb: 20,
@@ -59,6 +57,6 @@ export const TurnOrderList: React.FC = () => {
           />
         );
       })}
-    </Stack>
+    </Card>
   );
 };
