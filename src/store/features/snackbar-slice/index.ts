@@ -1,4 +1,3 @@
-import { Snackbar } from '@mui/material';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface ISnackbarProps {

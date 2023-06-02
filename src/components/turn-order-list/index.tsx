@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { Box, Button, Card, Paper, Stack, Typography } from '@mui/material';
+import { Card, Typography } from '@mui/material';
 import { ListCard } from '../list-card';
 import { addToGraveyard } from '../../store/features/graveyard-slice';
 import { removeCharacter } from '../../store/features/characters-slice';
@@ -20,7 +20,8 @@ export const TurnOrderList: React.FC = () => {
   return (
     <Card
       sx={{
-        ml: 2,
+        ml: 'auto',
+        mr: 'auto',
         mt: 10,
         mb: 20,
         minHeight: 100,

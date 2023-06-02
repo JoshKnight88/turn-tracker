@@ -1,14 +1,7 @@
-import { Box, Button, Typography, styled } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { increment, reset } from '../../store/features/counter-slice';
-
-// const CounterButton = styled(Button)({
-//   '&:hover': {
-//     backgroundColor: 'none',
-//     boxShadow: 'none',
-//   },
-// });
 
 export const TurnCounter: React.FC = () => {
   const dispatch = useAppDispatch();

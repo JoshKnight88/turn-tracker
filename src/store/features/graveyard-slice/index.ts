@@ -44,8 +44,8 @@ export const GraveyardSlice = createSlice({
       state.graveyard = remainingChars;
     },
     deleteGraveyard: (state) => {
-      state.graveyard = []
-    }
+      state.graveyard = [];
+    },
   },
 });
 

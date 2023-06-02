@@ -10,7 +10,7 @@ export const store = configureStore({
     character: CharacterSlice.reducer,
     graveyard: GraveyardSlice.reducer,
     counter: CounterSlice.reducer,
-    snackbar: SnackbarSlice.reducer
+    snackbar: SnackbarSlice.reducer,
   },
 });
 

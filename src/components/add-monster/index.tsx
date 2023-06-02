@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, FormControl, Paper, TextField, Typography } from '@mui/material';
 import { AddButton } from '../buttons/add-button';
 import { useAppDispatch } from '../../store';
@@ -56,7 +56,7 @@ export const AddMonster: React.FC = () => {
   const formIsValid = nameIsValid && initIsValid && hpIsValid;
 
   return (
-    <Paper sx={{ mt: 5, ml: 1, p: 2 }}>
+    <Paper sx={{ mt: 5, p: 2, width: '85%', mr: 'auto', ml: 'auto' }}>
       <Typography>Add Monsters/NPCs</Typography>
 
       <FormControl sx={{ mt: 3, mb: 1, width: '80%' }}>

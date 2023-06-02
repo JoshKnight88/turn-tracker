@@ -1,7 +1,6 @@
-import { Box, Button, Card, Paper, Stack, Typography } from '@mui/material';
+import { Box, Button, Card, Paper, Typography } from '@mui/material';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { AddButton } from '../buttons/add-button';
 import { removeFromGraveyard } from '../../store/features/graveyard-slice';
 import { addCharacter } from '../../store/features/characters-slice';
 import { isOpenTrue } from '../../store/features/snackbar-slice';
@@ -14,11 +13,11 @@ export const Graveyard: React.FC = () => {
   return (
     <Card
       sx={{
-        m: 1,
+        mb: 1,
+        ml: 1,
+        mr: 1,
+        mt: 2.4,
         textAlign: 'center',
-        // mr: 0,
-        // mt: 10,
-        // mb: 20,
         minHeight: 100,
       }}
     >

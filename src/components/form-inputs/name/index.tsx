@@ -15,7 +15,7 @@ export const NameInput: React.FC<INameInputProps> = ({
   return (
     <FormControl sx={{ mt: 3, mb: 3, width: '0%' }}>
       <InputLabel htmlFor='component-outlined'>{inputLabel}</InputLabel>
-      <OutlinedInput id={id} label={label}  type='text' fullWidth />
+      <OutlinedInput id={id} label={label} type='text' fullWidth />
     </FormControl>
   );
 };

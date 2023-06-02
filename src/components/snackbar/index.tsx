@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
+import React from 'react';
+import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { isOpenFalse } from '../../store/features/snackbar-slice';
 import { useAppDispatch, useAppSelector } from '../../store';

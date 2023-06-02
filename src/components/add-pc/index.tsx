@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormControl, Paper, TextField, Typography } from '@mui/material';
 import { AddButton } from '../buttons/add-button';
 import { useAppDispatch } from '../../store';
@@ -45,7 +45,7 @@ export const AddPC: React.FC = () => {
   const formIsValid = nameIsValid && initIsValid;
 
   return (
-    <Paper sx={{ mt: 0, ml: 1, p: 2 }}>
+    <Paper sx={{ mt: 0, p: 2, width: '85%', mr: 'auto', ml: 'auto' }}>
       <Typography>Add PCs</Typography>
 
       <FormControl sx={{ mt: 3, mb: 3, width: '80%' }}>
